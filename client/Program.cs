@@ -15,7 +15,7 @@ namespace client
 			endpointConfiguration.EnableInstallers();
 			var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
 			transport.UseDirectRoutingTopology();
-			transport.ConnectionString("host=rabbitserver");
+			transport.ConnectionString("host=localhost");
 
 			var conventions = endpointConfiguration.Conventions();
 			conventions.DefiningCommandsAs(
@@ -47,6 +47,12 @@ namespace client
 				{
 					Id = Guid.NewGuid()
 				};
+
+				dynamic MyDynamic = new System.Dynamic.ExpandoObject();
+				MyDynamic.A = "A";
+				MyDynamic.B = "B";
+				MyDynamic.C = "C";
+				MyDynamic.Number = 12;
 
 				endpointInstance.Send("example.server", exampleMessage);
 

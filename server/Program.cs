@@ -15,7 +15,7 @@ namespace server
 			endpointConfiguration.EnableInstallers();
 			var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
 			transport.UseDirectRoutingTopology();
-			transport.ConnectionString("host=rabbitserver");
+			transport.ConnectionString("host=localhost");
 
 			var conventions = endpointConfiguration.Conventions();
 			conventions.DefiningCommandsAs(
